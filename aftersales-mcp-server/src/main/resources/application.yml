@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT:8097}
+
+spring:
+  application:
+    name: aftersales-mcp-server
+  ai:
+    mcp:
+      server:
+        name: aftersales-order-tools
+        version: 0.1.0
+        protocol: STREAMABLE
+        instructions: 提供澄光数码售后演示用的订单查询和物流查询。数据是模拟的，不能退款。
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  level:
+    dev.striveh.aftersales: INFO

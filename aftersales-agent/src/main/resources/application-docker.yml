@@ -1,0 +1,15 @@
+agent:
+  retrieval:
+    backend: pgvector
+  tools:
+    mode: mcp
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/aftersales}
+    username: ${SPRING_DATASOURCE_USERNAME:aftersales}
+    password: ${SPRING_DATASOURCE_PASSWORD:aftersales}
+  ai:
+    mcp:
+      client:
+        enabled: true

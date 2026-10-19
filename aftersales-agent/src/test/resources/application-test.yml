@@ -1,0 +1,12 @@
+agent:
+  clock: "2026-10-19T00:00:00+08:00"
+  llm:
+    provider: stub
+  retrieval:
+    backend: memory
+  tools:
+    mode: local
+
+logging:
+  level:
+    root: WARN

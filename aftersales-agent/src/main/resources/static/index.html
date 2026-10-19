@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>澄光售后</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="eyebrow">AFTERSALES AGENT</p>
+      <h1>澄光售后</h1>
+      <p class="lead">先查订单和物流，再按制度条款决定能不能退。退款要你点确认，助手不会自己打款。</p>
+    </div>
+    <p class="mode" id="mode">离线确定性规划</p>
+  </header>
+
+  <main>
+    <section class="desk">
+      <label class="customer">
+        <span>演示客户</span>
+        <select id="customer"></select>
+      </label>
+      <p class="hint" id="hint"></p>
+      <div class="log" id="log" aria-live="polite">
+        <p class="empty">选一个客户，问「我上周买的耳机能退吗」。回答、引用和计划会分开显示。</p>
+      </div>
+      <form id="composer">
+        <textarea id="message" rows="2" placeholder="描述订单问题"></textarea>
+        <button type="submit" id="send">发送</button>
+      </form>
+      <p class="error" id="error" hidden></p>
+    </section>
+
+    <aside>
+      <section>
+        <h2>计划</h2>
+        <ol id="plan" class="steps"><li class="muted">还没有步骤</li></ol>
+      </section>
+      <section>
+        <h2>引用</h2>
+        <div id="citations" class="stack"><p class="muted">回答会带上制度名和条款名。</p></div>
+      </section>
+      <section id="approval-card" hidden>
+        <h2>退款确认</h2>
+        <p id="approval-text"></p>
+        <div class="row">
+          <button type="button" id="approve">确认退款</button>
+          <button type="button" id="reject" class="ghost">拒绝</button>
+        </div>
+      </section>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

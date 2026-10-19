@@ -1,0 +1,511 @@
+[
+  {
+    "id": "E01",
+    "title": "上周购买的耳机，签收未满 7 天，询问能否退货",
+    "customerPhone": "13800001001",
+    "turns": [
+      {
+        "message": "我上周买的耳机能退吗",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "requiredActions": ["lookup_order", "lookup_logistics", "retrieve_policy", "decide_eligibility"],
+          "forbiddenActions": ["request_refund"],
+          "orderId": "ORD-DEMO-1001",
+          "refundable": true,
+          "awaitingApproval": false,
+          "refundExecuted": false,
+          "replanned": false,
+          "citationDoc": "return-policy",
+          "citationSectionContains": "七天无理由",
+          "answerContains": ["林夏", "七天无理由", "没有发起退款"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E02",
+    "title": "签收已 40 天，无质量问题，只问能不能退",
+    "customerPhone": "13800001002",
+    "turns": [
+      {
+        "message": "我这个耳机能退吗",
+        "expect": {
+          "decision": "DENIED_WINDOW",
+          "forbiddenActions": ["request_refund"],
+          "orderId": "ORD-DEMO-1002",
+          "refundable": false,
+          "citationDoc": "return-policy",
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E03",
+    "title": "定制商品不适用无理由退货",
+    "customerPhone": "13800001003",
+    "turns": [
+      {
+        "message": "我的定制 T 恤能退吗",
+        "expect": {
+          "decision": "DENIED_EXCLUDED_CATEGORY",
+          "orderId": "ORD-DEMO-1003",
+          "citationDoc": "return-policy",
+          "citationSectionContains": "不支持七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E04",
+    "title": "食品不适用无理由退货",
+    "customerPhone": "13800001016",
+    "turns": [
+      {
+        "message": "我买的坚果礼盒能退吗",
+        "expect": {
+          "decision": "DENIED_EXCLUDED_CATEGORY",
+          "orderId": "ORD-DEMO-1016",
+          "citationSectionContains": "不支持七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E05",
+    "title": "贴身衣物不适用无理由退货",
+    "customerPhone": "13800001017",
+    "turns": [
+      {
+        "message": "我买的背心能退吗",
+        "expect": {
+          "decision": "DENIED_EXCLUDED_CATEGORY",
+          "orderId": "ORD-DEMO-1017",
+          "citationSectionContains": "不支持七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E06",
+    "title": "已激活的数字商品不能退",
+    "customerPhone": "13800001018",
+    "turns": [
+      {
+        "message": "我的音乐会员能退吗",
+        "expect": {
+          "decision": "DENIED_EXCLUDED_CATEGORY",
+          "orderId": "ORD-DEMO-1018",
+          "refundable": false,
+          "citationSectionContains": "不支持七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E07",
+    "title": "未激活的会员仍在七天内可以退",
+    "customerPhone": "13800001021",
+    "turns": [
+      {
+        "message": "我的音乐会员还没激活，能退吗",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "orderId": "ORD-DEMO-1021",
+          "refundable": true,
+          "forbiddenActions": ["request_refund"],
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E08",
+    "title": "只查在途物流",
+    "customerPhone": "13800001004",
+    "turns": [
+      {
+        "message": "我的耳机到哪了",
+        "expect": {
+          "decision": "LOGISTICS_INFO",
+          "requiredActions": ["lookup_order", "lookup_logistics"],
+          "forbiddenActions": ["request_refund"],
+          "orderId": "ORD-DEMO-1004",
+          "citationDoc": "logistics-policy",
+          "citationSectionContains": "未签收拦截",
+          "answerContains": ["运输中"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E09",
+    "title": "物流丢件可以退，但询问本身不发起退款",
+    "customerPhone": "13800001005",
+    "turns": [
+      {
+        "message": "我的耳机包裹丢了，能退吗",
+        "expect": {
+          "decision": "RETURN_LOST_IN_TRANSIT",
+          "refundable": true,
+          "awaitingApproval": false,
+          "forbiddenActions": ["request_refund"],
+          "orderId": "ORD-DEMO-1005",
+          "citationDoc": "logistics-policy",
+          "citationSectionContains": "物流丢件",
+          "answerContains": ["丢件", "没有发起退款"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E10",
+    "title": "签收 24 小时内的外包装破损",
+    "customerPhone": "13800001006",
+    "turns": [
+      {
+        "message": "我的耳机外包装破了，能退吗",
+        "expect": {
+          "decision": "RETURN_TRANSIT_DAMAGE",
+          "refundable": true,
+          "orderId": "ORD-DEMO-1006",
+          "citationDoc": "logistics-policy",
+          "citationSectionContains": "物流破损"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E11",
+    "title": "十五天内质量问题走换货而不是退款",
+    "customerPhone": "13800001007",
+    "turns": [
+      {
+        "message": "我的耳机没声音了，能换吗",
+        "expect": {
+          "decision": "EXCHANGE_QUALITY",
+          "refundable": false,
+          "forbiddenActions": ["request_refund"],
+          "orderId": "ORD-DEMO-1007",
+          "citationDoc": "return-policy",
+          "citationSectionContains": "十五天质量问题换货"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E12",
+    "title": "超过十五天但仍在保修期内，只能维修",
+    "customerPhone": "13800001002",
+    "turns": [
+      {
+        "message": "这副耳机没声音，能保修吗",
+        "expect": {
+          "decision": "WARRANTY_REPAIR",
+          "refundable": false,
+          "orderId": "ORD-DEMO-1002",
+          "citationDoc": "warranty-policy",
+          "citationSectionContains": "保修期与维修"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E13",
+    "title": "进水属于人为损坏",
+    "customerPhone": "13800001008",
+    "turns": [
+      {
+        "message": "我的耳机进水了，能保修吗",
+        "expect": {
+          "decision": "DENIED_HUMAN_DAMAGE",
+          "refundable": false,
+          "orderId": "ORD-DEMO-1008",
+          "citationDoc": "warranty-policy",
+          "citationSectionContains": "人为损坏"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E14",
+    "title": "缺配件不能走无理由退货",
+    "customerPhone": "13800001009",
+    "turns": [
+      {
+        "message": "我的耳机缺根线，能退吗",
+        "expect": {
+          "decision": "DENIED_MISSING_PARTS",
+          "orderId": "ORD-DEMO-1009",
+          "citationDoc": "return-policy",
+          "citationSectionContains": "配件缺失"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E15",
+    "title": "明确要求退款时只生成待确认单",
+    "customerPhone": "13800001001",
+    "turns": [
+      {
+        "message": "上周的耳机帮我退款",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "requiredActions": ["lookup_order", "decide_eligibility", "request_refund"],
+          "orderId": "ORD-DEMO-1001",
+          "awaitingApproval": true,
+          "refundExecuted": false,
+          "answerContains": ["尚未打款", "人工确认"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E16",
+    "title": "资格不成立时退款工具被跳过，不会入账",
+    "customerPhone": "13800001002",
+    "turns": [
+      {
+        "message": "这个过了很久的耳机帮我退款",
+        "expect": {
+          "decision": "DENIED_WINDOW",
+          "requiredActions": ["request_refund"],
+          "awaitingApproval": false,
+          "refundExecuted": false,
+          "refundable": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "E17",
+    "title": "错误订单号查不到后，按手机号重新规划",
+    "customerPhone": "13800001001",
+    "turns": [
+      {
+        "message": "帮我看下订单 ORD-00000000-0000 的耳机能不能退",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "requiredActions": ["lookup_order", "lookup_logistics", "decide_eligibility"],
+          "orderId": "ORD-DEMO-1001",
+          "replanned": true,
+          "forbiddenActions": ["request_refund"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E18",
+    "title": "同一手机号有两笔耳机，不能猜",
+    "customerPhone": "13800001015",
+    "turns": [
+      {
+        "message": "我买的耳机能退吗",
+        "expect": {
+          "decision": "NEED_CLARIFICATION",
+          "requiredActions": ["lookup_order"],
+          "forbiddenActions": ["request_refund"],
+          "answerContains": ["多笔"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E19",
+    "title": "说了上周，就能从两笔里挑出最近的一笔",
+    "customerPhone": "13800001015",
+    "turns": [
+      {
+        "message": "我上周买的耳机能退吗",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "orderId": "ORD-DEMO-1015A",
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E20",
+    "title": "不涉及具体订单的制度问题：拆封",
+    "turns": [
+      {
+        "message": "拆封的耳机还能七天无理由退吗",
+        "expect": {
+          "decision": "POLICY_INFO",
+          "requiredActions": ["retrieve_policy"],
+          "forbiddenActions": ["lookup_order", "request_refund"],
+          "citationDoc": "return-policy",
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E21",
+    "title": "不涉及具体订单的制度问题：保修多久",
+    "turns": [
+      {
+        "message": "保修一般多久",
+        "expect": {
+          "decision": "POLICY_INFO",
+          "forbiddenActions": ["lookup_order", "request_refund"],
+          "citationDoc": "warranty-policy",
+          "citationSectionContains": "保修期与维修"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E22",
+    "title": "退货运费由谁承担",
+    "turns": [
+      {
+        "message": "退货运费谁出",
+        "expect": {
+          "decision": "POLICY_INFO",
+          "forbiddenActions": ["lookup_order"],
+          "citationDoc": "return-policy",
+          "citationSectionContains": "退货运费"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E23",
+    "title": "寒暄不查订单",
+    "turns": [
+      {
+        "message": "你好",
+        "expect": {
+          "decision": "SMALL_TALK",
+          "forbiddenActions": ["lookup_order", "request_refund", "retrieve_policy"],
+          "answerContains": ["澄光数码的售后助手"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E24",
+    "title": "发票超出售后范围",
+    "turns": [
+      {
+        "message": "帮我开发票",
+        "expect": {
+          "decision": "OUT_OF_SCOPE",
+          "forbiddenActions": ["lookup_order", "request_refund"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "E25",
+    "title": "已经退过的订单不能再退",
+    "customerPhone": "13800001010",
+    "turns": [
+      {
+        "message": "我那单耳机不是已经退过了吗",
+        "expect": {
+          "decision": "DENIED_ALREADY_REFUNDED",
+          "orderId": "ORD-DEMO-1010",
+          "refundable": false,
+          "citationSectionContains": "退款需要人工确认"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E26",
+    "title": "签收满 7 天仍在无理由窗口内",
+    "customerPhone": "13800001013",
+    "turns": [
+      {
+        "message": "我这个耳机能退吗",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "orderId": "ORD-DEMO-1013",
+          "refundable": true,
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E27",
+    "title": "签收第 8 天不再适用无理由退货",
+    "customerPhone": "13800001014",
+    "turns": [
+      {
+        "message": "我这个耳机能退吗",
+        "expect": {
+          "decision": "DENIED_WINDOW",
+          "orderId": "ORD-DEMO-1014",
+          "refundable": false,
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E28",
+    "title": "食品签收当日变质可以退",
+    "customerPhone": "13800001019",
+    "turns": [
+      {
+        "message": "我今天收到的坚果变质了，能退吗",
+        "expect": {
+          "decision": "RETURN_FOOD_QUALITY",
+          "orderId": "ORD-DEMO-1019",
+          "refundable": true,
+          "forbiddenActions": ["request_refund"],
+          "citationDoc": "return-policy",
+          "citationSectionContains": "食品签收当日变质"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E29",
+    "title": "包装破损但已超过 24 小时，仍在七天内则走无理由",
+    "customerPhone": "13800001020",
+    "turns": [
+      {
+        "message": "我的耳机外包装破了，能退吗",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "orderId": "ORD-DEMO-1020",
+          "refundable": true,
+          "citationSectionContains": "七天无理由"
+        }
+      }
+    ]
+  },
+  {
+    "id": "E30",
+    "title": "先问能不能退，再说帮我退款，确认前不能入账",
+    "customerPhone": "13800001001",
+    "approveAtEnd": true,
+    "turns": [
+      {
+        "message": "我上周买的耳机能退吗",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "awaitingApproval": false,
+          "forbiddenActions": ["request_refund"],
+          "refundExecuted": false
+        }
+      },
+      {
+        "message": "那帮我退款",
+        "expect": {
+          "decision": "RETURN_NO_REASON",
+          "requiredActions": ["request_refund"],
+          "awaitingApproval": true,
+          "refundExecuted": false,
+          "answerContains": ["尚未打款", "人工确认"]
+        }
+      }
+    ]
+  }
+]

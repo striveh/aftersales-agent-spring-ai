@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.15</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>dev.striveh</groupId>
+    <artifactId>aftersales-agent-spring-ai</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
+
+    <name>aftersales-agent-spring-ai</name>
+    <description>E-commerce after-sales customer-service agent built with Spring AI: plan-and-execute, hybrid RAG, MCP tools, and human approval for refunds.</description>
+    <url>https://github.com/striveh/aftersales-agent-spring-ai</url>
+    <inceptionYear>2026</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>striveh</id>
+            <name>Huang Qingxi</name>
+            <url>https://github.com/striveh</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/mit</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/striveh/aftersales-agent-spring-ai</url>
+        <connection>scm:git:https://github.com/striveh/aftersales-agent-spring-ai.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/striveh/aftersales-agent-spring-ai.git</developerConnection>
+    </scm>
+
+    <modules>
+        <module>aftersales-common</module>
+        <module>aftersales-mcp-server</module>
+        <module>aftersales-agent</module>
+        <module>aftersales-eval</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <spring-ai.version>1.1.8</spring-ai.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>dev.striveh</groupId>
+                <artifactId>aftersales-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.striveh</groupId>
+                <artifactId>aftersales-agent</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

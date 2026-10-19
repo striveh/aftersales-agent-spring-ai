@@ -1,0 +1,12 @@
+target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+*.log
+.env
+agent-tools/
+.DS_Store
+aftersales-eval/target/eval-report.md
